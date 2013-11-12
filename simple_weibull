@@ -68,8 +68,6 @@ sub date_change {
   }
 }
 
-
-
 #ワイブル分布のパラメータ計算ファンクションン
 sub weibull_paramater {
   my @array = @_;
@@ -88,19 +86,12 @@ sub weibull_paramater {
     for my $data_count (0..$data_length-1) {
       my $temp1 = (($array[$data_count])**($m_before));
       my $temp2 = log($array[$data_count]);
-      #print "temp1 = $temp1\n";
-      #print "temp2 = $temp2\n";
       $sum_temp1 += $temp1;
       $sum_temp2 += $temp2;
       $sum_temp1_2 += ($temp1*$temp2);
     }
     $a = $data_length/$sum_temp1;
     $m = $data_length/($a*$sum_temp1_2-$sum_temp2);
-    print "\$sum_temp1 = $sum_temp1\n";
-    print "\$a = $a\n";
-    print "\$a_before = $a_before\n";
-    print "\$m = $m\n";
-    print "\$m_before = $m_before\n";
     if(abs($a-$a_before) < $epsilon and abs($m-$m_before) < $epsilon) {
       $error = "false";
       last;
